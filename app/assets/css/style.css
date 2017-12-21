@@ -1,0 +1,32 @@
+.title {
+  margin-bottom: 1em;
+}
+
+.last-updated-elements {
+  margin: 2.5em 0 1.5em 0;
+}
+
+.button-refresh {
+  margin-left: 1em;
+}
+
+.element-not-displayed {
+  display: none;
+}
+
+.error-visible {
+  display: block;
+  opacity: 1;
+}
+
+.close-cross {
+  cursor: pointer;
+}
+
+.pr-table {
+  margin-top: 2em;
+}
+
+.pr-table td {
+  padding-right: 1em;
+}

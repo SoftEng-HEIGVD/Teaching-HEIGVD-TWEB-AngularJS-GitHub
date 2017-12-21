@@ -1,0 +1,43 @@
+<div class="md-padding" flex layout-sm="column">
+    <md-card>
+        <md-card-content>
+            <h3 class="title">GitHub Pull Requests Analyzer</h3>
+
+            <p>
+                Select a project:
+                <select ng-model="vm.selectedRepository" ng-change="vm.fetchPullRequests()">
+                    <option ng-repeat="repository in vm.repositoriesList" value="{{repository}}">
+                        {{repository}}
+                    </option>
+                </select>
+                or add a new one:
+                <input type="text" placeholder="owner/repository" ng-model="vm.newRepository" ng-keypress="vm.handleInputKeyPress($event)" />
+                <button ng-click="vm.addRepositoryToList()">Add</button>
+            </p>
+
+            <p class="last-updated-elements" ng-hide="!vm.lastUpdated || vm.isFetching">
+                <span>Last updated at {{vm.lastUpdated}}</span>
+                <button class="button-refresh" ng-click="vm.fetchPullRequests()">Refresh</button>
+            </p>
+
+            <div class="alert alert-danger fade in element-not-displayed" ng-class="{'error-visible': vm.error}">
+                <a class="close close-cross" aria-label="close" ng-click="vm.resetError()">&times;</a>
+                <strong>Error!</strong> {{vm.error}}
+            </div>
+
+            <h5 ng-hide="!vm.isFetching || vm.pullRequests.length">Loading...</h5>
+            <h5 ng-hide="vm.isFetching || vm.pullRequests.length">No results</h5>
+
+            <table class="pr-table" ng-hide="!vm.pullRequests.length">
+                <tr>
+                    <th>Author</th>
+                    <th>Title</th>
+                </tr>
+                <tr ng-repeat="pr in vm.pullRequests">
+                    <td>{{pr.user.login}}</td>
+                    <td><a href="{{pr.html_url}}">{{pr.title}}</a></td>
+                </tr>
+            </table>
+        </md-card-content>
+    </md-card>
+</div>
