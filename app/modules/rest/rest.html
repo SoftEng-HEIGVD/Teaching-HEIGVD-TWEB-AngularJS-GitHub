@@ -17,7 +17,7 @@
 
             <p class="last-updated-elements" ng-hide="!vm.lastUpdated || vm.isFetching">
                 <span>Last updated at {{vm.lastUpdated}}</span>
-                <button class="button-refresh" ng-click="vm.fetchPullRequests()">Refresh</button>
+                <refresh></refresh>
             </p>
 
             <div class="alert alert-danger fade in element-not-displayed" ng-class="{'error-visible': vm.error}">

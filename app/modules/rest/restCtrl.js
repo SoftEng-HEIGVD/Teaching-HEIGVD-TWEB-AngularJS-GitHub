@@ -11,7 +11,8 @@
 
   	angular
 			.module('rest')
-			.controller('RestCtrl', RestCtrl);
+			.controller('RestCtrl', RestCtrl)
+			.directive('refresh', refreshDirective);
 
 		RestCtrl.$inject = ['$scope', 'restService'];
 
@@ -80,6 +81,15 @@
 			}
 
 			vm.fetchPullRequests();
+		}
+
+		function refreshDirective() {
+			return {
+        restrict: 'E',
+        template: '<button class="button-refresh" ng-click="vm.fetchPullRequests()">Refresh</button>',
+        controller: RestCtrl,
+        controllerAs: 'vm'
+    	}
 		}
 
 })();
